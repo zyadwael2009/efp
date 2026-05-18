@@ -110,8 +110,10 @@ pip install -r requirements.txt
 ```bash
 # In ~/efp/backend/.env
 SECRET_KEY=your-long-random-secret-key-here
-FRONTEND_URL=https://your-frontend.netlify.app
-CORS_ORIGINS=https://your-frontend.netlify.app
+FRONTEND_URL=https://efpp.netlify.app
+NETLIFY_URL=https://efpp.netlify.app
+# Optional override if you want to list multiple origins:
+# CORS_ORIGINS=https://efpp.netlify.app,https://another-site.netlify.app
 FLASK_DEBUG=false
 ```
 

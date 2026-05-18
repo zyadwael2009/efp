@@ -32,7 +32,16 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JSON_SORT_KEYS = False
     FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
-    CORS_ORIGINS = os.getenv("CORS_ORIGINS", _default_cors_origins(FRONTEND_URL))
+    # Optional: allow explicitly-listed Netlify site in production.
+    NETLIFY_URL = os.getenv("NETLIFY_URL", "https://efpp.netlify.app").strip()
+
+    # Build a sensible default set of allowed origins. If `NETLIFY_URL` is set
+    # (e.g. on PythonAnywhere web app env), append it so Netlify-hosted frontend
+    # can make requests to this API.
+    _base_origins = _default_cors_origins(FRONTEND_URL)
+    _combined = f"{_base_origins},{NETLIFY_URL}" if NETLIFY_URL else _base_origins
+
+    CORS_ORIGINS = os.getenv("CORS_ORIGINS", _combined)
     ADMIN_BOOTSTRAP_KEY = os.getenv("ADMIN_BOOTSTRAP_KEY", "")
     ADMIN_TOKEN_MAX_AGE_SECONDS = int(os.getenv("ADMIN_TOKEN_MAX_AGE_SECONDS", "86400"))
     ENABLE_ADMIN_BOOTSTRAP = os.getenv("ENABLE_ADMIN_BOOTSTRAP", "false").lower() in ("1", "true", "yes")
