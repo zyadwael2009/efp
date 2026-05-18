@@ -1,0 +1,4 @@
+[build]
+  base = "efpp/frontend"
+  command = "npm run build"
+  publish = "efpp/frontend/dist"
