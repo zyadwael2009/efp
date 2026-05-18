@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:5000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://efp.pythonanywhere.com//api";
 const ADMIN_TOKEN_STORAGE_KEY = "efp_admin_token";
 
 function cleanParams(params = {}) {
