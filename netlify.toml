@@ -1,4 +1,4 @@
 [build]
-  base = "frontend"         # must exist inside the repo
-  publish = "build"         # folder produced inside the base
+  base = "efpp/frontend"
   command = "npm run build"
+  publish = "dist"
